@@ -12,6 +12,10 @@ import java.util.List;
 import java.util.Map;
 
 public class Util {
+    public static boolean isStringPalindrome(String str) {
+        return str.equals(new StringBuilder(str).reverse().toString());
+    }
+
     public static void printSentences(ArrayList<Sentence> sentences) {
         for (Sentence sentence : sentences) {
             System.out.println(sentence.toString());
