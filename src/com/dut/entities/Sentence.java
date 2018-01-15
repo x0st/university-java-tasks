@@ -27,6 +27,7 @@ public class Sentence implements PartOfSentence {
             if ((ascii >= 65 && ascii <= 90) || (ascii >= 97 && ascii <= 122)) {
                 letterNow = true;
                 word += String.valueOf(sentence.charAt(i));
+                charToAdd = null;
             } else if (ascii == Space.ASCII) {
                 charToAdd = new Space();
                 letterNow = false;
@@ -39,13 +40,18 @@ public class Sentence implements PartOfSentence {
             }
 
             if (word.length() > 0 && false == letterNow) {
-                this.parts.add(charToAdd);
                 this.parts.add(new Word(word));
                 this.words.add(new Word(word));
                 this.wordCount++;
                 word = "";
             }
+
+            if (charToAdd != null) {
+                this.parts.add(charToAdd);
+            }
         }
+
+        this.parts.remove(this.parts.size()-1);
     }
 
     public ArrayList<PartOfSentence> getParts() {
